@@ -3,3 +3,9 @@
     grid-template-columns: 4fr 1fr;
     margin-left: 4rem;
 }
+.products-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px;
+    position: relative;
+}
