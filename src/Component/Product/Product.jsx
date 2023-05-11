@@ -10,6 +10,7 @@ const Product = (props) => {
   const { img, name, price, seller, ratings } = props.product;
   
   const handleAddToCart = props.handleAddToCart;
+  const removeFromDb = props.removeFromDb;
 
   return (
     <div className="product">
@@ -24,6 +25,7 @@ const Product = (props) => {
         Add to Cart
         <FontAwesomeIcon icon={faShoppingCart} />
         </button>
+        <button onClick={()=>removeFromDb(props.product)} className="btn-remove">Remove</button>
     </div>
   );
 };

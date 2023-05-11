@@ -32,10 +32,22 @@
   background: #ffe0b3;
   border: 1px solid #95a0a7;
   border-radius: 0px 0px 8px 8px;
-  width: 100%;
+  width: 50%;
   position: absolute;
   bottom: 0;
 }
+.btn-remove{
+  background: #ffe0b3;
+  border: 1px solid #95a0a7;
+  border-radius: 0px 0px 8px 8px;
+  width: 50%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
 .btn-cart:hover{
-    background-color: orange;
+    background-color: green;
+}
+.btn-remove:hover{
+  background-color: red;
 }

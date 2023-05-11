@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import "./Shop.css";
 import Product from "../Product/Product";
 import Cart from "../Cart/Cart";
+import { addToDb, remove } from "../../utilities/fakedb2";
+
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -18,7 +20,12 @@ const Shop = () => {
     // console.log(product)
     const newCart = [...cart, product];
     setCart(newCart);
+    addToDb(product.id);
   };
+  const removeFromDb = (product) =>{
+    // console.log('product removed', product);
+    remove(product.id)
+  }
 
   return (
     <div className="shop-container">
@@ -28,6 +35,7 @@ const Shop = () => {
             key={product.id}
             product={product}
             handleAddToCart={handleAddToCart}
+            removeFromDb = {removeFromDb}
           ></Product>
         ))}
       </div>
