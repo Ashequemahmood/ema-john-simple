@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Shop.css";
 import Product from "../Product/Product";
 import Cart from "../Cart/Cart";
-import { addToDb, remove } from "../../utilities/fakedb2";
-
+import { addToDb, getShoppingCart, remove } from "../../utilities/fakedb2";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -15,6 +14,22 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+  
+
+  useEffect(() => {
+    const storedCart = getShoppingCart();
+    const savedCart = [];
+    for (const id in storedCart) {
+      const addedProduct = products.find((product) => product.id === id);
+      if (addedProduct) {
+        const quantity = storedCart[id];
+        addedProduct.quantity = quantity;
+        // console.log(addedProduct);
+        savedCart.push(addedProduct);
+      }
+    }
+    setCart[savedCart];
+  }, [products]);
 
   const handleAddToCart = (product) => {
     // console.log(product)
@@ -22,10 +37,10 @@ const Shop = () => {
     setCart(newCart);
     addToDb(product.id);
   };
-  const removeFromDb = (product) =>{
+  const removeFromDb = (product) => {
     // console.log('product removed', product);
-    remove(product.id)
-  }
+    remove(product.id);
+  };
 
   return (
     <div className="shop-container">
@@ -35,12 +50,12 @@ const Shop = () => {
             key={product.id}
             product={product}
             handleAddToCart={handleAddToCart}
-            removeFromDb = {removeFromDb}
+            removeFromDb={removeFromDb}
           ></Product>
         ))}
       </div>
       <div className="order-container">
-        <Cart cart = {cart}></Cart>
+        <Cart cart={cart}></Cart>
       </div>
     </div>
   );
