@@ -3,7 +3,7 @@ import "./Cart.css";
 
 const Cart = (props) => {
     // const cart = props.cart;
-    const {cart} = props;
+    const {cart, handleClearCart} = props;
 
     // console.log(cart)
 
@@ -30,6 +30,7 @@ const Cart = (props) => {
       <p>Shipping:€ {totalShipping}</p>
       <p>Tax: €{tax.toFixed(2)}</p>
       <h6>Grand Total: €{grandTotal.toFixed(2)}</h6>
+      <button onClick={handleClearCart}>Clear Cart</button>
     </div>
   );
 };
